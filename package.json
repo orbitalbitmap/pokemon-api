@@ -1,0 +1,32 @@
+{
+  "name": "pokemon-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/nodemon index.js",
+    "lint": "run lint:pug-lint && run lint:eslint",
+    "lint:eslint": "./node_modules/.bin/eslint --format codeframe .",
+    "lint:puglint": "./node_modules/.bin/pug-lint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orbitalbitmap/pokemon-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orbitalbitmap/pokemon-api/issues"
+  },
+  "homepage": "https://github.com/orbitalbitmap/pokemon-api#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.3",
+    "pug-lint": "^2.6.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^2.0.4",
+    "s": "^1.0.0"
+  }
+}
