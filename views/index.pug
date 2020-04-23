@@ -1,0 +1,61 @@
+html
+  head
+    title Pokemon API
+    link(rel="stylesheet" href="/css/styles.css")
+    script(src="../controllers/pug-index-controller.js")
+  body
+    h2 Welcome to the Pokemon API
+    div(class="main-container")
+      div(class="left-container")
+        div(class="tabs" id="get")
+          span GET
+          span /pokemon
+        div(class="tabs" id="get")
+          span GET
+          span /generation/{genId}
+
+        div(class="tabs" id="get")
+          span GET
+          span /pokemon/{pokemon name}
+          div /pokemon/{pokemon id}
+
+        div(class="tabs" id="push")
+          span PUSH
+          span /pokemon
+
+      div(class="right-container")
+        div(class="method-container")
+          h3 Method
+          div GET
+          h3 Route
+          div http://localhost:1337/pokemon
+          div(class="get-all")
+            h3 Headers
+            div None needed
+            div
+            h3 Decription
+            div Returns a list all of the pokemon in the databse.
+
+          div(class="get-generation")
+            h3 Method
+            div GET
+            h3 Route
+            div http://localhost:1337/pokemon/generations/{id}
+            h3 Headers
+            div None needed
+            div
+            h3 Decription
+            div Returns a list of all pokemon associated with the generation of the numerical {id}.
+
+          div(class="get-pokemon")
+            h3 Method
+            div GET
+            h3 Route
+            div http://localhost:1337/pokemon/pokemon/{id}
+            div(style="margin-left:110px") OR
+            div http://localhost:1337/pokemon/pokemon/{name}
+            h3 Headers
+            div None needed
+            div
+            h3 Decription
+            div Returns the pokemon associated with the numerical {id]} (pokedex number) or the {name} of the pokemon.

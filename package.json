@@ -7,7 +7,7 @@
     "dev": "./node_modules/.bin/nodemon index.js",
     "lint": "run lint:pug-lint && run lint:eslint",
     "lint:eslint": "./node_modules/.bin/eslint --format codeframe .",
-    "lint:puglint": "./node_modules/.bin/pug-lint ."
+    "puglint": "./node_modules/.bin/pug-lint ."
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,39 @@
+h2{
+  text-align: center;
+}
+
+h3{
+  margin-bottom: 5px;
+}
+
+.get-generation, .get-pokemon{
+  display: none;
+}
+
+.get-all, .get-generation, .get-pokemon{
+  position: absolute;
+}
+
+.main-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+}
+
+.left-container{
+  align-self: center;
+  flex-direction: column;
+  margin: 0px 20px;
+}
+
+.right-container{
+  align-self: center;
+  flex-direction: row;
+  margin: 0px 20px;
+  position: relative;
+}
+
+.tabs{
+  margin-top: 10px;
+}
