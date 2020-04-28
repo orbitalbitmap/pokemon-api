@@ -2,60 +2,84 @@ html
   head
     title Pokemon API
     link(rel="stylesheet" href="/css/styles.css")
-    script(src="../controllers/pug-index-controller.js")
+    script(src="/pug-index-controller.js")
   body
     h2 Welcome to the Pokemon API
     div(class="main-container")
       div(class="left-container")
-        div(class="tabs" id="get")
-          span GET
+        div(class="tabs highlighted" id="getAll" onclick="updateSelected('getAll')")
+          span(class="get") GET
           span /pokemon
-        div(class="tabs" id="get")
-          span GET
+        div(class="tabs" id="getGeneration" onclick="updateSelected('getGeneration')")
+          span(class="get") GET
           span /generation/{genId}
 
-        div(class="tabs" id="get")
-          span GET
-          span /pokemon/{pokemon name}
-          div /pokemon/{pokemon id}
+        div(class="tabs" id="getPokemonById" onclick="updateSelected('getPokemonById')")
+          span(class="get") GET
+          span /pokemon/{pokemonId}
 
-        div(class="tabs" id="push")
-          span PUSH
+        div(class="tabs" id="pushPokemon" onclick="updateSelected('pushPokemon')")
+          span(class="push") PUSH
           span /pokemon
 
+        div(class="tabs" id="deletePokemonById" onclick="updateSelected('deletePokemonById')")
+          span(class="delete") DELETE
+          span /pokemon/{pokemonId}
+
       div(class="right-container")
-        div(class="method-container")
+        div(class="method" id="getAll")
           h3 Method
-          div GET
+          div(class="get") GET
           h3 Route
           div http://localhost:1337/pokemon
-          div(class="get-all")
-            h3 Headers
-            div None needed
-            div
-            h3 Decription
-            div Returns a list all of the pokemon in the databse.
+          h3 Headers
+          div None needed
+          div
+          h3 Decription
+          div Returns a list all of the pokemon in the databse.
 
-          div(class="get-generation")
-            h3 Method
-            div GET
-            h3 Route
-            div http://localhost:1337/pokemon/generations/{id}
-            h3 Headers
-            div None needed
-            div
-            h3 Decription
-            div Returns a list of all pokemon associated with the generation of the numerical {id}.
+        div(class="method hidden" id="getGeneration")
+          h3 Method
+          div(class="get") GET
+          h3 Route
+          div http://localhost:1337/pokemon/generations/{genId}
+          h3 Headers
+          div None needed
+          div
+          h3 Decription
+          div Returns the generation list of all pokemon associated with {genId}.
 
-          div(class="get-pokemon")
-            h3 Method
-            div GET
-            h3 Route
-            div http://localhost:1337/pokemon/pokemon/{id}
-            div(style="margin-left:110px") OR
-            div http://localhost:1337/pokemon/pokemon/{name}
-            h3 Headers
-            div None needed
-            div
-            h3 Decription
-            div Returns the pokemon associated with the numerical {id]} (pokedex number) or the {name} of the pokemon.
+        div(class="method hidden" id="getPokemonById")
+          h3 Method
+          div(class="get") GET
+          h3 Route
+          div http://localhost:1337/pokemon/pokemon/{pokemonId}
+          h3 Headers
+          div None needed
+          div
+          h3 Decription
+          div Returns the pokemon associated with the {id} (Id's are also the pokemon's pokedex number).
+
+        div(class="method hidden" id="pushPokemon")
+          h3 Method
+          div(class="push") PUSH
+          h3 Route
+          div http://localhost:1337/pokemon
+          h3 Headers
+          div Content-Type: application/json
+          div
+          h3 Body
+          div { "gen": "1", "name": "Bulbasaur", "Types": "['grass', 'poison']"}
+          h3 Decription
+          div Returns a list all of the pokemon in the databse.
+
+        div(class="method hidden" id="deletePokemonById")
+          h3 Method
+          div(class="delete") DELETE
+          h3 Route
+          div http://localhost:1337/pokemon/pokemon/{pokemonId}
+          h3 Headers
+          div None needed
+          div
+          h3 Decription
+          div Deletes the pokemon associated with the {id} (Id's are also the pokemon's pokedex number).
