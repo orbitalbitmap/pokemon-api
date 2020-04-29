@@ -17,10 +17,10 @@ h3{
 
 .highlighted{
   width: 300px;
-  height: 25px;
+  height: 30px;
   position: relative;
   background: lightgray;
-  padding-top: 5px;
+  
 }
 
 .highlighted:after {
@@ -45,7 +45,6 @@ h3{
 }
 
 .left-container{
-  flex-direction: row;
   margin: 0px 20px;
   padding-top: 30px;
   width: 320px;
@@ -57,7 +56,7 @@ h3{
   justify-content: center;
 }
 
-.push{
+.post{
   color: darkorange;
   font-weight: bold;
 }
@@ -71,5 +70,5 @@ h3{
 .tabs{
   cursor: pointer;
   font-size: 20px;
-  margin: 20px;
+  margin: 30px;
 }

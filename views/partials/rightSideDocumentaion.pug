@@ -1,0 +1,52 @@
+div(class="right-container")
+  div(class="method" id="getAll")
+    h3 Method
+    div(class="get") GET
+    h3 Route
+    div http://localhost:1337/pokemon
+    h3 Headers
+    div None needed
+    h3 Decription
+    div Returns a list all of the pokemon in the databse.
+
+  div(class="method hidden" id="getGeneration")
+    h3 Method
+    div(class="get") GET
+    h3 Route
+    div http://localhost:1337/pokemon/generations/{genId}
+    h3 Headers
+    div None needed
+    h3 Decription
+    div Returns the generation list of all pokemon associated with {genId}.
+
+  div(class="method hidden" id="getPokemonById")
+    h3 Method
+    div(class="get") GET
+    h3 Route
+    div http://localhost:1337/pokemon/pokemon/{pokemonId}
+    h3 Headers
+    div None needed
+    h3 Decription
+    div Returns the pokemon associated with the {id} (Id's are also the pokemon's pokedex number).
+
+  div(class="method hidden" id="postPokemon")
+    h3 Method
+    div(class="post") POST
+    h3 Route
+    div http://localhost:1337/pokemon
+    h3 Headers
+    div Content-Type: application/json
+    h3 Body
+    div { "gen": "1", "name": "Bulbasaur", "Types": "['grass', 'poison']"}
+    h3 Decription
+    div Returns a list all of the pokemon in the databse.
+
+  div(class="method hidden" id="deletePokemonById")
+    h3 Method
+    div(class="delete") DELETE
+    h3 Route
+    div http://localhost:1337/pokemon/pokemon/{pokemonId}
+    h3 Headers
+    div None needed
+    h3 Decription
+    div Deletes the pokemon associated with the {id} (Id's are also the pokemon's pokedex number).
