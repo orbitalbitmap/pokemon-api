@@ -1,3 +1,7 @@
+body{
+  margin-top: 150px;
+}
+
 h2{
   text-align: center;
 }
@@ -7,36 +11,8 @@ h3{
 }
 
 .delete{
-  color:red;
+  color: crimson;
   font-weight: bold;
-}
-
-.hidden{
-  display: none;
-}
-
-.highlighted{
-  width: 300px;
-  height: 30px;
-  position: relative;
-  background: lightgray;
-  
-}
-
-.highlighted:after {
-  content: "";
-  position: absolute;
-  right: -15px;
-  bottom: 0;
-  width: 0;
-  height: 0;
-  border-left: 15px solid lightgray;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-}
-
-.get-all, .get-generation, .get-pokemon{
-  padding: 0px;
 }
 
 .get{
@@ -44,9 +20,34 @@ h3{
   font-weight: bold;
 }
 
+.get-all, .get-generation, .get-pokemon{
+  padding: 0px;
+}
+
+.hidden{
+  display: none;
+}
+
+.highlighted{
+  background-color: lightgray;
+  position: relative;
+  width: 300px;
+  
+}
+
+.highlighted:after {
+  bottom: 0;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid lightgray;
+  border-top: 15px solid transparent;
+  content: "";
+  position: absolute;
+  right: -15px;
+  width: 0;
+}
+
 .left-container{
   margin: 0px 20px;
-  padding-top: 30px;
   width: 320px;
 }
 
@@ -64,11 +65,19 @@ h3{
 .right-container{
   margin: 0px 20px;
   position: relative;
-  width: 320px;
+  width: 340px;
+}
+
+.spacing{
+  margin: 20px 0px;
+  padding-left: 20px;
 }
 
 .tabs{
   cursor: pointer;
   font-size: 20px;
-  margin: 30px;
+  margin: 30px 0;
+  padding-top: 4px;
+  padding-left: 5px;
+  padding-bottom: 3px;
 }
