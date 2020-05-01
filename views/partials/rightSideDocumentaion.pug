@@ -1,0 +1,52 @@
+div(class="right-container")
+  div(class="method" id="getAll")
+    h3 Method
+    div(class="get spacing") GET
+    h3 Route
+    div(class="spacing") http://localhost:1337/pokemon
+    h3 Headers
+    div(class="spacing") None needed
+    h3 Decription
+    div(class="spacing") Returns a list all of the pokemon in the databse.
+
+  div(class="method hidden" id="getGeneration")
+    h3 Method
+    div(class="spacing get") GET
+    h3 Route
+    div(class="spacing") http://localhost:1337/pokemon/generations/{genId}
+    h3 Headers
+    div(class="spacing") None needed
+    h3 Decription
+    div(class="spacing") Returns the generation list of all pokemon associated with {genId}.
+
+  div(class="method hidden" id="getPokemonById")
+    h3 Method
+    div(class="spacing get") GET
+    h3 Route
+    div(class="spacing") http://localhost:1337/pokemon/pokemon/{pokemonId}
+    h3 Headers
+    div(class="spacing") None needed
+    h3 Decription
+    div(class="spacing") Returns the pokemon associated with the {id} (Id's are also the pokemon's pokedex number).
+
+  div(class="method hidden" id="postPokemon")
+    h3 Method
+    div(class="spacing post") POST
+    h3 Route
+    div(class="spacing") http://localhost:1337/pokemon
+    h3 Headers
+    div(class="spacing") Content-Type: application/json
+    h3 Body
+    div(class="spacing") { "gen": "1", "name": "Bulbasaur", "Types": "['grass', 'poison']" }
+    h3 Decription
+    div(class="spacing") Returns a list all of the pokemon in the databse.
+
+  div(class="method hidden" id="deletePokemonById")
+    h3 Method
+    div(class="spacing delete") DELETE
+    h3 Route
+    div(class="spacing") http://localhost:1337/pokemon/pokemon/{pokemonId}
+    h3 Headers
+    div(class="spacing") None needed
+    h3 Decription
+    div(class="spacing") Deletes the pokemon associated with the {id} (Id's are also the pokemon's pokedex number).
