@@ -5,7 +5,7 @@
   "main": ".eslintrc.js",
   "scripts": {
     "dev": "./node_modules/.bin/nodemon index.js",
-    "lint": "run lint:puglint && run lint:eslint",
+    "lint": "npm run lint:pug && npm run lint:eslint",
     "lint:eslint": "./node_modules/.bin/eslint --format codeframe .",
     "lint:pug": "./node_modules/.bin/pug-lint ."
   },
