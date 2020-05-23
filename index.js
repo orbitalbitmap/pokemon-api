@@ -1,4 +1,7 @@
 const express = require('express')
+const { getAllPokemon, getPokemonById } = require('./controllers/Pokemons')
+const { getAllTypes, getTypeById } = require('./controllers/Types')
+const { getAllAlternateForms, getAlternateFormById } = require('./controllers/AlternateForms')
 
 const app = express()
 
@@ -8,6 +11,15 @@ app.use(express.static('public'))
 app.get('/', (request, response) => {
   return response.status(200).render('index')
 })
+
+app.get('/pokemon', getAllPokemon)
+app.get('/pokemon/:id', getPokemonById)
+
+app.get('/types', getAllTypes)
+app.get('/types/:id', getTypeById)
+
+app.get('/alternate-forms', getAllAlternateForms)
+app.get('/alternate-forms/:id', getAlternateFormById)
 
 app.all('*', (request, response) => {
   return response.status(404).send('Looks like you found nothing in the pokedex.')
