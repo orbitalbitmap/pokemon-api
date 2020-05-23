@@ -7,12 +7,12 @@ const {
   after, afterEach, before, beforeEach, describe, it
 } = require('mocha')
 const { formsList, singleAltFormWithPokemon } = require('../mocks/pokemonData')
-const { getAllAlternateForms, getAlternateFormById } = require('../../controllers/AlternateForms.js')
+const { getAllForms, getFormById } = require('../../controllers/Forms.js')
 
 chai.use(sinonChai)
 const { expect } = chai
 
-describe('Controllers - AlternateForms', () => {
+describe('Controllers - Forms', () => {
   let sandbox
   let stubbedFindAll
   let stubbedFindOne
@@ -25,8 +25,8 @@ describe('Controllers - AlternateForms', () => {
   before(() => {
     sandbox = sinon.createSandbox()
 
-    stubbedFindAll = sandbox.stub(models.AlternateForms, 'findAll')
-    stubbedFindOne = sandbox.stub(models.AlternateForms, 'findOne')
+    stubbedFindAll = sandbox.stub(models.Forms, 'findAll')
+    stubbedFindOne = sandbox.stub(models.Forms, 'findOne')
 
     stubbedSend = sandbox.stub()
     stubbedSendStatus = sandbox.stub()
@@ -52,11 +52,11 @@ describe('Controllers - AlternateForms', () => {
     sandbox.restore()
   })
 
-  describe('getAllAlternateForms', () => {
-    it('retrieves a list of all alternate form names.', async () => {
+  describe('getAllForms', () => {
+    it('retrieves a list of all  form names.', async () => {
       stubbedFindAll.returns(formsList)
 
-      await getAllAlternateForms({}, response)
+      await getAllForms({}, response)
 
       expect(stubbedFindAll).to.have.been.calledWith()
       expect(stubbedSend).to.have.been.calledWith(formsList)
@@ -65,19 +65,19 @@ describe('Controllers - AlternateForms', () => {
     it('returns a 500 error with an error message when the database call throws an error.', async () => {
       stubbedFindAll.throws('ERROR!')
 
-      await getAllAlternateForms({}, response)
+      await getAllForms({}, response)
 
       expect(stubbedStatus).to.have.been.calledWith(500)
-      expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to retrieve all the alternate forms, please try again.')
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to retrieve all the  forms, please try again.')
     })
   })
 
-  describe('getAlternateFormById', () => {
-    it('retrieves the alternate form associated with the id passed by the user with the pokemon that have that alternate form and responds with a 200 status and sends the list of pokemon back.', async () => {
+  describe('getFormById', () => {
+    it('retrieves the  form associated with the id passed by the user with the pokemon that have that  form and responds with a 200 status and sends the list of pokemon back.', async () => {
       stubbedFindOne.returns(singleAltFormWithPokemon)
       const request = { params: { id: 'alolan' } }
 
-      await getAlternateFormById(request, response)
+      await getFormById(request, response)
 
       expect(stubbedFindOne).to.be.calledWith({
         where: { name: request.params.id },
@@ -87,11 +87,11 @@ describe('Controllers - AlternateForms', () => {
       expect(stubbedStatusDotSend).to.have.been.calledWith(singleAltFormWithPokemon)
     })
 
-    it('returns a 404 status and a message when no alternate form is found matching the id provided by the user.', async () => {
+    it('returns a 404 status and a message when no  form is found matching the id provided by the user.', async () => {
       stubbedFindOne.returns(null)
       const request = { params: { id: 'pikachu' } }
 
-      await getAlternateFormById(request, response)
+      await getFormById(request, response)
 
       expect(stubbedFindOne).to.be.calledWith({
         where: { name: request.params.id },
@@ -104,10 +104,10 @@ describe('Controllers - AlternateForms', () => {
     it('returns a 500 status with a message when the database call throws an error.', async () => {
       stubbedFindOne.throws('ERROR!')
 
-      await getAlternateFormById({}, response)
+      await getFormById({}, response)
 
       expect(stubbedStatus).to.have.been.calledWith(500)
-      expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to retrieve the alternate form, please try again.')
+      expect(stubbedStatusDotSend).to.have.been.calledWith('Unable to retrieve the  form, please try again.')
     })
   })
 })

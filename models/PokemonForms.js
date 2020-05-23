@@ -1,16 +1,16 @@
-const PokemonAlternateForms = (connection, Sequelize, AlternateForms, Pokemons) => {
-  return connection.define('PokemonAlternateForms', {
+const PokemonForms = (connection, Sequelize, Forms, Pokemons) => {
+  return connection.define('PokemonForms', {
     PokemonPokedexNumber: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       references: { model: Pokemons, key: 'pokedexNumber' }
     },
-    AlternateFormId: {
+    FormId: {
       type: Sequelize.STRING,
       allowNull: false,
       primaryKey: true,
-      references: { model: AlternateForms, key: 'id' }
+      references: { model: Forms, key: 'id' }
     }
   }, {
     defaultScope: {
@@ -21,4 +21,4 @@ const PokemonAlternateForms = (connection, Sequelize, AlternateForms, Pokemons) 
   })
 }
 
-module.exports = PokemonAlternateForms
+module.exports = PokemonForms

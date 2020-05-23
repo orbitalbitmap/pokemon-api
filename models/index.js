@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize')
 const PokemonsModel = require('./Pokemons')
-const AlternateFormsModel = require('./AlternateForms')
+const FormsModel = require('./Forms')
 const TypesModel = require('./Types')
-const PokemonAlternateFormsModel = require('./PokemonAlternateForms')
+const PokemonFormsModel = require('./PokemonForms')
 const PokemonTypesModel = require('./PokemonTypes')
 
 const connection = new Sequelize('pokemonApi', 'ash', 'P1k4chU', {
@@ -10,22 +10,22 @@ const connection = new Sequelize('pokemonApi', 'ash', 'P1k4chU', {
 })
 
 const Pokemons = PokemonsModel(connection, Sequelize)
-const AlternateForms = AlternateFormsModel(connection, Sequelize)
+const Forms = FormsModel(connection, Sequelize)
 const Types = TypesModel(connection, Sequelize)
-const PokemonAlternateForms = PokemonAlternateFormsModel(connection, Sequelize, AlternateForms, Pokemons)
+const PokemonForms = PokemonFormsModel(connection, Sequelize, Forms, Pokemons)
 const PokemonTypes = PokemonTypesModel(connection, Sequelize, Pokemons, Types)
 
 Pokemons.belongsToMany(Types, { through: PokemonTypes })
 Types.belongsToMany(Pokemons, { through: PokemonTypes })
 
-Pokemons.belongsToMany(AlternateForms, { through: PokemonAlternateForms })
-AlternateForms.belongsToMany(Pokemons, { through: PokemonAlternateForms })
+Pokemons.belongsToMany(Forms, { through: PokemonForms })
+Forms.belongsToMany(Pokemons, { through: PokemonForms })
 
 module.exports = {
   Pokemons,
-  AlternateForms,
+  Forms,
   Types,
-  PokemonAlternateForms,
+  PokemonForms,
   PokemonTypes,
   Op: Sequelize.Op
 }

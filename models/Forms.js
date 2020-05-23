@@ -1,5 +1,5 @@
-const AlternateForms = (connection, Sequelize) => {
-  return connection.define('AlternateForms', {
+const Forms = (connection, Sequelize) => {
+  return connection.define('Forms', {
     id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
     name: { type: Sequelize.STRING, allowNull: false }
   }, {
@@ -11,4 +11,4 @@ const AlternateForms = (connection, Sequelize) => {
   })
 }
 
-module.exports = AlternateForms
+module.exports = Forms
