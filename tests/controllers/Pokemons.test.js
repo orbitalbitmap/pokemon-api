@@ -7,7 +7,7 @@ const {
   after, afterEach, before, beforeEach, describe, it
 } = require('mocha')
 const { pokemonList, singleAltFormWithPokemon } = require('../mocks/pokemonData')
-const { getAllPokemon, getPokemonById } = require('../../controllers/Pokemons.js')
+const { getAllPokemon, getPokemonById, getPokemonByGenerationId } = require('../../controllers/Pokemons.js')
 
 chai.use(sinonChai)
 const { expect } = chai
@@ -108,6 +108,20 @@ describe('Controllers - Pokemons', () => {
 
       expect(stubbedStatus).to.have.been.calledWith(500)
       expect(stubbedStatusDotSend).to.have.been.calledWith('Could not retrieve the pokemon, please try again.')
+    })
+  })
+
+  describe('getPokemonByGenerationId', () => {
+    it('retrieves all the pokemon in the user specified id.', async () => {
+      stubbedFindAll.returns(pokemonList)
+
+      const request = { params: { id: '1' } }
+
+
+      await getPokemonByGenerationId(request, response)
+
+      expect(stubbedFindAll).to.have.been.calledWith({ where: { generationNumber: request.params.id } })
+      expect(stubbedSend).to.have.been.calledWith(pokemonList)
     })
   })
 })

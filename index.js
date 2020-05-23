@@ -1,5 +1,5 @@
 const express = require('express')
-const { getAllPokemon, getPokemonById } = require('./controllers/Pokemons')
+const { getAllPokemon, getPokemonById, getPokemonByGenerationId } = require('./controllers/Pokemons')
 const { getAllTypes, getTypeById } = require('./controllers/Types')
 const { getAllForms, getFormById } = require('./controllers/Forms')
 
@@ -14,6 +14,8 @@ app.get('/', (request, response) => {
 
 app.get('/pokemon', getAllPokemon)
 app.get('/pokemon/:id', getPokemonById)
+
+app.get('/generation/:id', getPokemonByGenerationId)
 
 app.get('/types', getAllTypes)
 app.get('/types/:id', getTypeById)
