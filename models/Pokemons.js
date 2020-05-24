@@ -4,7 +4,7 @@ const Pokemons = (connection, Sequelize) => {
     name: { type: Sequelize.STRING, allowNull: false },
     generationNumber: { type: Sequelize.INTEGER, allowNull: false },
     fromId: { type: Sequelize.INTEGER, allowNull: true },
-    protected: { type: Sequelize.TINYINT }
+    isProtected: { type: Sequelize.TINYINT, default: 0 }
   }, {
     defaultScope: {
       attributes: { exclude: ['deletedAt'] }

@@ -1,5 +1,12 @@
 const express = require('express')
-const { getAllPokemon, getPokemonById, getPokemonByGenerationId } = require('./controllers/Pokemons')
+const bodyParser = require('body-parser')
+const {
+  getAllPokemon,
+  getPokemonById,
+  getPokemonByGenerationId,
+  saveNewPokemon,
+  deletePokemon
+} = require('./controllers/Pokemons')
 const { getAllTypes, getTypeById } = require('./controllers/Types')
 const { getAllForms, getFormById } = require('./controllers/Forms')
 
@@ -13,7 +20,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/pokemon', getAllPokemon)
+app.post('/pokemon', bodyParser.json(), saveNewPokemon)
 app.get('/pokemon/:id', getPokemonById)
+app.delete('/pokemon/:name', deletePokemon)
 
 app.get('/generation/:id', getPokemonByGenerationId)
 

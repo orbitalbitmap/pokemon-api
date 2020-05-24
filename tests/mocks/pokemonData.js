@@ -3,7 +3,7 @@ const pokemonList = [{
   name: 'Bulbasaur',
   generationNumber: 1,
   fromId: null,
-  protected: 1,
+  isProtected: 1,
   createdAt: '2020-05-23T11:42:42.000Z',
   updatedAt: '2020-05-23T11:42:42.000Z'
 }, {
@@ -11,7 +11,7 @@ const pokemonList = [{
   name: 'Bulbasaur',
   generationNumber: 1,
   fromId: null,
-  protected: 1,
+  isProtected: 1,
   createdAt: '2020-05-23T11:42:42.000Z',
   updatedAt: '2020-05-23T11:42:42.000Z'
 }]
@@ -35,7 +35,7 @@ const singlePokemonWithAltForm = {
   name: 'Grimer',
   generationNumber: 1,
   fromId: null,
-  protected: 1,
+  isProtected: 1,
   createdAt: '2020-05-23T11:42:42.000Z',
   updatedAt: '2020-05-23T11:42:42.000Z',
   'AlternateForms': [
@@ -79,7 +79,7 @@ const singleAltFormWithPokemon = {
       name: 'Rattata',
       generationNumber: 1,
       fromId: null,
-      protected: 1,
+      isProtected: 1,
       createdAt: '2020-05-23T11:42:42.000Z',
       updatedAt: '2020-05-23T11:42:42.000Z',
       PokemonAlternateForms: {
@@ -103,7 +103,7 @@ const singleTypeWithPokemon = {
       name: 'Caterpie',
       generationNumber: 1,
       fromId: null,
-      protected: 1,
+      isProtected: 1,
       createdAt: '2020-05-23T11:42:42.000Z',
       updatedAt: '2020-05-23T11:42:42.000Z',
       PokemonTypes: {
@@ -116,6 +116,37 @@ const singleTypeWithPokemon = {
   ]
 }
 
+const newPokemon = {
+  pokedexNumber: 154,
+  generationNumber: 1,
+  fromId: null,
+  isisProtected: 0,
+  name: 'Leafeon',
+  updatedAt: '2020-05-24T16:42:32.743Z',
+  createdAt: '2020-05-24T16:42:32.743Z'
+}
+
+const unprotectedPokemon = {
+  pokedexNumber: 88,
+  generationNumber: 1,
+  fromId: null,
+  isisProtected: 0,
+  name: 'Jolion',
+  updatedAt: '2020-05-24T16:42:32.743Z',
+  createdAt: '2020-05-24T16:42:32.743Z'
+}
+
+const protectedPokemon = {
+  pokedexNumber: 1,
+  name: 'Fakemon',
+  generationNumber: 1,
+  fromId: null,
+  isProtected: 1,
+  createdAt: '2020-05-23T11:42:42.000Z',
+  updatedAt: '2020-05-23T11:42:42.000Z',
+  deletedAt: null,
+}
+
 
 module.exports = {
   pokemonList,
@@ -123,5 +154,8 @@ module.exports = {
   typesList,
   singlePokemonWithAltForm,
   singleAltFormWithPokemon,
-  singleTypeWithPokemon
+  singleTypeWithPokemon,
+  newPokemon,
+  unprotectedPokemon,
+  protectedPokemon
 }

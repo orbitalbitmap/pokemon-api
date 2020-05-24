@@ -16,7 +16,7 @@ const getPokemonById = async (request, response) => {
     const pokemon = await models.Pokemons.findOne({
       where: { name: id },
       include: [
-        { model: models.AlternateForms },
+        { model: models.Forms },
         { model: models.Types }
       ]
     })
@@ -42,4 +42,83 @@ const getPokemonByGenerationId = async (request, response) => {
   }
 }
 
-module.exports = { getAllPokemon, getPokemonById, getPokemonByGenerationId }
+const saveNewPokemon = async (request, response) => {
+  try {
+    const {
+      name,
+      generationNumber,
+      fromId,
+      types
+    } = request.body
+    const isProtected = request.body.isPortected || 0
+
+
+    if (!name || !generationNumber) {
+      return response
+        .status(400)
+        .send('At least one of the following attributes is missing: pokedexNumber, name, or generationNumber')
+    }
+
+    const [savedPokemon, created] = await models.Pokemons.findOrCreate({
+      where: { name },
+      defaults: { generationNumber, fromId, isProtected }
+    })
+
+    Promise.resolve(savedPokemon)
+
+    if (created) {
+      const promisedTypesId = types.map(async typeName => {
+        const [type] = await models.Types.findOrCreate({ where: { name: typeName } })
+
+        return type.id
+      })
+
+
+      const typesId = await Promise.all(promisedTypesId)
+      const { pokedexNumber } = savedPokemon
+
+      typesId.map(async (typeId) => {
+        const promisedPokemonType = await models.PokemonTypes.findOrCreate({
+          where: { PokemonPokedexNumber: pokedexNumber },
+          defaults: { TypeId: typeId }
+        })
+
+        const pokemonType = Promise.resolve(promisedPokemonType)
+
+        return pokemonType
+      })
+    }
+
+
+    return response.status(201).send(savedPokemon)
+  } catch (error) {
+    return response.status(500).send('Could not reach the database, please try again.')
+  }
+}
+
+const deletePokemon = async (request, response) => {
+  try {
+    const { name } = request.params
+
+    const pokemon = await models.Pokemons.findOne({ where: { name } })
+
+    if (!pokemon) return response.status(404).send(`No pokemon matching the name: ${name}`)
+
+    if (pokemon.isProtected) return response.status(409).send('Cannot delete protected pokemon')
+
+    await models.PokemonTypes.destroy({ where: { PokemonPokedexNumber: pokemon.pokedexNumber } })
+    await models.Pokemons.destroy({ where: { name } })
+
+    return response.send(`Successfully deleted the pokemon: ${name}.`)
+  } catch (error) {
+    return response.status(500).send('Unknown error while deleting pokemon, please try again.')
+  }
+}
+
+module.exports = {
+  getAllPokemon,
+  getPokemonById,
+  getPokemonByGenerationId,
+  saveNewPokemon,
+  deletePokemon
+}
