@@ -7,7 +7,7 @@ const PokemonForms = (connection, Sequelize, Forms, Pokemons) => {
       references: { model: Pokemons, key: 'pokedexNumber' }
     },
     FormId: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: { model: Forms, key: 'id' }

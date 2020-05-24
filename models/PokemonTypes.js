@@ -6,7 +6,7 @@ const PokemonTypes = (connection, Sequelize, Pokemons, Types) => {
       primaryKey: true,
       references: { model: Pokemons, key: 'pokedexNumber' }
     },
-    TypeId: { type: Sequelize.STRING, allowNull: false, primaryKey: true, references: { model: Types, key: 'id' } }
+    TypeId: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, references: { model: Types, key: 'id' } }
   }, {
     defaultScope: {
       attributes: { exclude: ['deletedAt'] }
