@@ -120,7 +120,7 @@ const newPokemon = {
   pokedexNumber: 154,
   generationNumber: 1,
   fromId: null,
-  isisProtected: 0,
+  isProtected: 0,
   name: 'Leafeon',
   updatedAt: '2020-05-24T16:42:32.743Z',
   createdAt: '2020-05-24T16:42:32.743Z'

@@ -107,7 +107,7 @@ describe('Controllers - API', () => {
         expect(stubbedSend).to.have.been.calledWith(pokemonList)
       })
 
-      it('returns a 500 error with an error message when the database call throws an error.', async () => {
+      it('returns a 500 error with a message when the database call throws an error.', async () => {
         stubbedPokemonsFindAll.throws('ERROR!')
 
         await getAllPokemon({}, response)
@@ -118,7 +118,7 @@ describe('Controllers - API', () => {
     })
 
     describe('getPokemonById', () => {
-      it('retrieves the pokemon associated with the id passed by the user with the pokemon\'s alternate formm and types and responds with a 200 status and sends the list of pokemon back.', async () => {
+      it('retrieves the pokemon associated with the id passed by the user with the pokemon\'s alternate form and types and responds with a 200 status and sends the list of pokemon back.', async () => {
         stubbedPokemonsFindOne.returns(singlePokemonWithAltForm)
         const request = { params: { id: 'Grimer' } }
 
@@ -132,7 +132,7 @@ describe('Controllers - API', () => {
         expect(stubbedStatusDotSend).to.have.been.calledWith(singlePokemonWithAltForm)
       })
 
-      it('returns a 404 status and a message when no pokemon is found matching the id provided by the user.', async () => {
+      it('returns a 404 status with a message when no pokemon is found matching the id provided by the user.', async () => {
         stubbedPokemonsFindOne.returns(null)
         const request = { params: { id: 'ratata' } }
 
@@ -157,7 +157,7 @@ describe('Controllers - API', () => {
     })
 
     describe('getPokemonByGenerationId', () => {
-      it('retrieves all the pokemon in the user specified id.', async () => {
+      it('retrieves all the pokemon in a generation provided by the user specified id.', async () => {
         stubbedPokemonsFindAll.returns(pokemonList)
 
         const request = { params: { id: '1' } }
@@ -169,7 +169,7 @@ describe('Controllers - API', () => {
         expect(stubbedSend).to.have.been.calledWith(pokemonList)
       })
 
-      it('returns a 404 error when a user searches for a generation thats not in the database.', async () => {
+      it('returns a 404 error when a user searches for a generation that does not exist in the database.', async () => {
         stubbedPokemonsFindAll.returns('')
         const request = { params: { id: 4 } }
 
@@ -191,8 +191,8 @@ describe('Controllers - API', () => {
     })
 
     describe('saveNewPokemon', () => {
-      it('either finds a pokemon matching the name provided or creates a new pokemon based on the by the user inputs.', async () => {
-        stubbedPokemonsFindOrCreate.onCall(0).returns([newPokemon, false])
+      it('either finds a pokemon matching the name provided or creates a new pokemon based on the id input by user.', async () => {
+        stubbedPokemonsFindOrCreate.returns([newPokemon, false])
         stubbedTypesFindOrCreate.onCall(1).returns(7)
         stubbedTypesFindOrCreate.onCall(2).returns(8)
         stubbedPokemonTypesFindOrCreate.onCall(3).returns({ PokemonPokedexNumber: 154, typeId: 7 })
@@ -284,7 +284,7 @@ describe('Controllers - API', () => {
 
   describe('Controllers - Forms', () => {
     describe('getAllForms', () => {
-      it('retrieves a list of all  form names.', async () => {
+      it('retrieves a list of all form names.', async () => {
         stubbedFormsFindAll.returns(formsList)
 
         await getAllForms({}, response)
@@ -304,7 +304,7 @@ describe('Controllers - API', () => {
     })
 
     describe('getFormById', () => {
-      it('retrieves the  form associated with the id passed by the user with the pokemon that have that  form and responds with a 200 status and sends the list of pokemon back.', async () => {
+      it('retrieves a form and the associated pokemon to the form and responds with a 200 status and sends the list of pokemon back.', async () => {
         stubbedFormsFindOne.returns(singleAltFormWithPokemon)
         const request = { params: { id: 'alolan' } }
 
@@ -318,7 +318,7 @@ describe('Controllers - API', () => {
         expect(stubbedStatusDotSend).to.have.been.calledWith(singleAltFormWithPokemon)
       })
 
-      it('returns a 404 status and a message when no  form is found matching the id provided by the user.', async () => {
+      it('returns a 404 status and a message when no form is found matching the id provided by the user.', async () => {
         stubbedFormsFindOne.returns(null)
         const request = { params: { id: 'pikachu' } }
 
@@ -345,7 +345,7 @@ describe('Controllers - API', () => {
 
   describe('Controllers - Types', () => {
     describe('getAllTypes', () => {
-      it('retrieves a list of all alternate form names.', async () => {
+      it('retrieves a list of all types.', async () => {
         stubbedTypesFindAll.returns(pokemonList)
 
         await getAllTypes({}, response)
@@ -365,7 +365,7 @@ describe('Controllers - API', () => {
     })
 
     describe('getTypeById', () => {
-      it('retrieves the alternate form associated with the id passed by the user with the pokemon that have that alternate form and responds with a 200 status and sends the list of pokemon back.', async () => {
+      it('retrieves all the pokemon under a user specified type and responds with a 200 status and sends the list of pokemon back.', async () => {
         stubbedTypesFindOne.returns(singleAltFormWithPokemon)
         const request = { params: { id: 'alolan' } }
 
@@ -379,7 +379,7 @@ describe('Controllers - API', () => {
         expect(stubbedStatusDotSend).to.have.been.calledWith(singleAltFormWithPokemon)
       })
 
-      it('returns a 404 status and a message when no alternate form is found matching the id provided by the user.', async () => {
+      it('returns a 404 status and a message when no type is found matching the id provided by the user.', async () => {
         stubbedTypesFindOne.returns(null)
         const request = { params: { id: 'shadow' } }
 
