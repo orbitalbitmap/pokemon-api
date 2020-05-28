@@ -66,16 +66,14 @@ module.exports = {
     })
 
     return queryInterface.createTable('PokemonForms', {
+      id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       PokemonPokedexNumber: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
         references: { model: 'Pokemons', key: 'pokedexNumber' }
       },
       FormId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        primaryKey: true,
         references: { model: 'Forms', key: 'id' }
       },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },

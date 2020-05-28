@@ -237,12 +237,13 @@ describe('Controllers - API', () => {
       it('deletes a user named pokemon from the database as long as its not protected.', async () => {
         stubbedPokemonsFindOne.returns(unprotectedPokemon)
 
+
         const request = { params: { name: 'Jolion' } }
 
         await deletePokemon(request, response)
 
-        expect(stubbedPokemonTypesDestroy).to.have.callCount(1)
-        expect(stubbedPokemonsDestroy).to.have.callCount(1)
+        expect(stubbedPokemonTypesDestroy).to.have.calledWith({ where: { PokemonPokedexNumber: unprotectedPokemon.pokedexNumber } })
+        expect(stubbedPokemonsDestroy).to.have.calledWith({ where: { name: request.params.name } })
         expect(stubbedSend).to.have.been.calledWith(`Successfully deleted the pokemon: ${request.params.name}.`)
       })
 
