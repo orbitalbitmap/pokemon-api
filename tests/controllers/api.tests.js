@@ -202,7 +202,7 @@ describe('Controllers - API', () => {
           body: {
             name: 'Leafeon',
             generationNumber: 1,
-            fromId: null,
+            fromId: 'null',
             types: ['Fire', 'Flying']
           }
         }
@@ -215,7 +215,13 @@ describe('Controllers - API', () => {
 
       it('returns a 400 status and a message when no pokemon is found matching the id provided by the user.', async () => {
         stubbedPokemonsFindOne.returns(null)
-        const request = { body: { name: 'ratata' } }
+        const request = {
+          body: {
+            generationNumber: 1,
+            fromId: 'null',
+            types: ['Fire', 'Flying']
+          }
+        }
 
         await saveNewPokemon(request, response)
 
