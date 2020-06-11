@@ -47,10 +47,12 @@ const saveNewPokemon = async (request, response) => {
     const {
       name,
       generationNumber,
-      fromId,
       types
     } = request.body
-    const isProtected = request.body.isPortected || 0
+    const isProtected = request.body.isProtected || 0
+    const fromId = request.body.fromId.toLowerCase() === 'null'
+      ? null
+      : request.body.fromId
 
 
     if (!name || !generationNumber) {

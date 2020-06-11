@@ -23,7 +23,7 @@ div(class="right-container")
     h2 Method
     h3(class="spacing get") GET
     h2 Route
-    h3(class="spacing") http://localhost:1337/pokemon/generation/{genId}
+    h3(class="spacing") http://localhost:1337/generation/{genId}
     h2 Headers
     h3(class="spacing") None needed
     h2 Decription
@@ -77,7 +77,7 @@ div(class="right-container")
     h2 Headers
     h3(class="spacing") Content-Type: application/json
     h2 Body
-    h3(class="spacing") { "gen": "1", "name": "Bulbasaur", "Types": "['grass', 'poison']", "fromId": "null" }
+    h3(class="spacing") { "generationNumber": "1", "name": "Bulbasaur", "Types": "['grass', 'poison']", "fromId": "null" }
     h2 Decription
     h3(class="spacing")
       | Saves a new pokemon to the database. (Note: the fromId is if the pokemon is an evolution of
